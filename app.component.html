@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="form-wrapper">
+    <h2>User Details</h2>
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <input class="input-box" type="text" name="userName" placeholder="Enter Text" formControlName="userName">
+      <input class="input-box" type="tel" name="phone" placeholder="Enter Phone" formControlName="phone">
+      <input class="input-box" type="text" name="address" placeholder="Enter Address" formControlName="address">
+      <p>You have entered: {{ userName }}</p>
+      <p>Phone: {{ formdata.value.phone }}</p>
+      <p>Address: {{ formdata.value.address }}</p>
+      <input class="btn" type="submit" value="Click here">
+    </form>
+  </div>
+
+  <div class="form-wrapper">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Email</label>
+        <input class="input-box" type="email" id="email" formControlName="email">
+        <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="error">
+          Email is required and must be a valid email address.
+        </div>
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input class="input-box" type="password" id="password" formControlName="password">
+        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="error">
+          Password is required and must be at least 6 characters long.
+        </div>
+      </div>
+      <button class="btn" type="submit" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+  </div>
+  
+</div>
+
+<router-outlet />
